@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="chota.min.css">
+	<script type="text/javascript" src="learn.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Learn Japanese</title>
+	<style type="text/css">
+		:root {
+			--bg-color: #222831;
+			--secondary-color: #393e46;
+			--border-style: 1px solid #d65a31;
+			--font-color: #eeeeee;
+		}
+		body {
+			background: var(--bg-color);
+			color: var(--font-color);
+		}
+		.button {
+			cursor: pointer;
+			outline: none;
+		}
+		.nav-right {
+			padding-top: 7px;
+			padding-bottom: 7px;
+			padding-right: 2rem;
+		}
+		.brand {
+			white-space: nowrap;
+			color: var(--font-color)!important;
+		}
+		#course-select {
+			width: 230px;
+		}
+		.view-content {
+			padding-top: 15px;
+			border-top: var(--border-style);
+		}
+		word {
+			background: var(--secondary-color);
+			border: var(--border-style);
+			margin-bottom: 10px;
+			min-height: 150px;
+			border-radius: 5px;
+		}
+		word > basic {
+			border-right: var(--border-style);
+			position: relative;
+		}
+		sentence {
+			display: block;
+			padding-left: 40px;
+			position: relative;
+		}
+		sentence:not(:first-child) {
+			border-top: var(--border-style);
+		}
+		word > basic > div {
+			position: absolute;
+			left: 5px;
+			top: 40px;
+		}
+		word > basic > div *:before, sentence > div > *:before {
+			content: "• ";
+		}
+		word > basic > div > * {
+			display: block;
+			text-align: left;
+		}
+		sentence > div > * {
+			display: block;
+			text-align: left;
+		}
+		type {
+			text-align: right;
+			position: absolute;
+			right: 5px;
+			top: 0;
+		}
+		word .col, word .col-4 {
+			margin: 0;
+		}
+		sound {
+			position: absolute;
+			left: 0;
+			top: 0;
+			text-align: center;
+			font-size: 1.5em;
+			height: 40px;
+			width: 40px;
+		}
+		basic:hover sound {
+			text-shadow: 0 0 3px;
+			cursor: pointer;
+		}
+		sentence:hover sound {
+			text-shadow: 0 0 3px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<nav class="nav">
+			<div class="nav-left">
+				<div class="brand">JP-EN</div>
+			</div>
+			<div class="nav-center">
+				<button id="view-button" class="button primary">View</button>
+				<button id="train-button" disabled class="button primary">Train</button>
+				<button id="test-button" disabled class="button primary">Test</button>
+			</div>
+			<div class="nav-right">
+				<select id="course-select">
+					<optgroup label="Japanese Core 1000">
+						<option selected value="Japanese_Core_1000_Step_1">Japanese Core 1000 Step 1</option>
+						<option value="Japanese_Core_1000_Step_2">Japanese Core 1000 Step 2</option>
+						<option value="Japanese_Core_1000_Step_3">Japanese Core 1000 Step 3</option>
+						<option value="Japanese_Core_1000_Step_4">Japanese Core 1000 Step 4</option>
+						<option value="Japanese_Core_1000_Step_5">Japanese Core 1000 Step 5</option>
+						<option value="Japanese_Core_1000_Step_6">Japanese Core 1000 Step 6</option>
+						<option value="Japanese_Core_1000_Step_7">Japanese Core 1000 Step 7</option>
+						<option value="Japanese_Core_1000_Step_8">Japanese Core 1000 Step 8</option>
+						<option value="Japanese_Core_1000_Step_9">Japanese Core 1000 Step 9</option>
+						<option value="Japanese_Core_1000_Step_10">Japanese Core 1000 Step 10</option>
+					</optgroup>
+					<optgroup label="Japanese Core 2000">
+						<option value="Japanese_Core_2000_Step_1">Japanese Core 2000 Step 1</option>
+						<option value="Japanese_Core_2000_Step_2">Japanese Core 2000 Step 2</option>
+						<option value="Japanese_Core_2000_Step_3">Japanese Core 2000 Step 3</option>
+						<option value="Japanese_Core_2000_Step_4">Japanese Core 2000 Step 4</option>
+						<option value="Japanese_Core_2000_Step_5">Japanese Core 2000 Step 5</option>
+						<option value="Japanese_Core_2000_Step_6">Japanese Core 2000 Step 6</option>
+						<option value="Japanese_Core_2000_Step_7">Japanese Core 2000 Step 7</option>
+						<option value="Japanese_Core_2000_Step_8">Japanese Core 2000 Step 8</option>
+						<option value="Japanese_Core_2000_Step_9">Japanese Core 2000 Step 9</option>
+						<option value="Japanese_Core_2000_Step_10">Japanese Core 2000 Step 10</option>
+					</optgroup>
+					<optgroup label="Japanese Core 3000">
+						<option value="Japanese_Core_3000_Step_1">Japanese Core 3000 Step 1</option>
+						<option value="Japanese_Core_3000_Step_2">Japanese Core 3000 Step 2</option>
+						<option value="Japanese_Core_3000_Step_3">Japanese Core 3000 Step 3</option>
+						<option value="Japanese_Core_3000_Step_4">Japanese Core 3000 Step 4</option>
+						<option value="Japanese_Core_3000_Step_5">Japanese Core 3000 Step 5</option>
+						<option value="Japanese_Core_3000_Step_6">Japanese Core 3000 Step 6</option>
+						<option value="Japanese_Core_3000_Step_7">Japanese Core 3000 Step 7</option>
+						<option value="Japanese_Core_3000_Step_8">Japanese Core 3000 Step 8</option>
+						<option value="Japanese_Core_3000_Step_9">Japanese Core 3000 Step 9</option>
+						<option value="Japanese_Core_3000_Step_10">Japanese Core 3000 Step 10</option>
+					</optgroup>
+					<optgroup label="Japanese Core 4000">
+						<option value="Japanese_Core_4000_Step_1">Japanese Core 4000 Step 1</option>
+						<option value="Japanese_Core_4000_Step_2">Japanese Core 4000 Step 2</option>
+						<option value="Japanese_Core_4000_Step_3">Japanese Core 4000 Step 3</option>
+						<option value="Japanese_Core_4000_Step_4">Japanese Core 4000 Step 4</option>
+						<option value="Japanese_Core_4000_Step_5">Japanese Core 4000 Step 5</option>
+						<option value="Japanese_Core_4000_Step_6">Japanese Core 4000 Step 6</option>
+						<option value="Japanese_Core_4000_Step_7">Japanese Core 4000 Step 7</option>
+						<option value="Japanese_Core_4000_Step_8">Japanese Core 4000 Step 8</option>
+						<option value="Japanese_Core_4000_Step_9">Japanese Core 4000 Step 9</option>
+						<option value="Japanese_Core_4000_Step_10">Japanese Core 4000 Step 10</option>
+					</optgroup>
+					<optgroup label="Japanese Core 5000">
+						<option value="Japanese_Core_5000_Step_1">Japanese Core 5000 Step 1</option>
+						<option value="Japanese_Core_5000_Step_2">Japanese Core 5000 Step 2</option>
+						<option value="Japanese_Core_5000_Step_3">Japanese Core 5000 Step 3</option>
+						<option value="Japanese_Core_5000_Step_4">Japanese Core 5000 Step 4</option>
+						<option value="Japanese_Core_5000_Step_5">Japanese Core 5000 Step 5</option>
+						<option value="Japanese_Core_5000_Step_6">Japanese Core 5000 Step 6</option>
+						<option value="Japanese_Core_5000_Step_7">Japanese Core 5000 Step 7</option>
+						<option value="Japanese_Core_5000_Step_8">Japanese Core 5000 Step 8</option>
+						<option value="Japanese_Core_5000_Step_9">Japanese Core 5000 Step 9</option>
+						<option value="Japanese_Core_5000_Step_10">Japanese Core 5000 Step 10</option>
+					</optgroup>
+					<optgroup label="Japanese Core 6000">
+						<option value="Japanese_Core_6000_Step_1">Japanese Core 6000 Step 1</option>
+						<option value="Japanese_Core_6000_Step_2">Japanese Core 6000 Step 2</option>
+						<option value="Japanese_Core_6000_Step_3">Japanese Core 6000 Step 3</option>
+						<option value="Japanese_Core_6000_Step_4">Japanese Core 6000 Step 4</option>
+						<option value="Japanese_Core_6000_Step_5">Japanese Core 6000 Step 5</option>
+						<option value="Japanese_Core_6000_Step_6">Japanese Core 6000 Step 6</option>
+						<option value="Japanese_Core_6000_Step_7">Japanese Core 6000 Step 7</option>
+						<option value="Japanese_Core_6000_Step_8">Japanese Core 6000 Step 8</option>
+						<option value="Japanese_Core_6000_Step_9">Japanese Core 6000 Step 9</option>
+						<option value="Japanese_Core_6000_Step_10">Japanese Core 6000 Step 10</option>
+					</optgroup>
+				</select>
+			</div>
+		</nav>
+		<div id="view-content" class="view-content">
+		</div>
+		<div id="train-content" class="train-content">
+		</div>
+		<div id="test-content" class="test-content">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload = (e) => {
+		window.LEARN = new Learn();
+	};
+</script>
+</html>
