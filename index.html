@@ -61,8 +61,30 @@
 			left: 5px;
 			top: 40px;
 		}
-		word > basic > div *:before, sentence > div > *:before {
-			content: "• ";
+		japanese b {
+			color: white;
+			text-decoration: underline;
+		}
+		word > basic > div japanese:before {
+			content: "【";
+		}
+		word > basic > div japanese:after {
+			content: "】";
+		}
+		sentence > div > japanese:before {
+			content: "「";
+		}
+		sentence > div > japanese:after {
+			content: "」";
+		}
+		word > basic > div english:before {
+			content: "\00a0\00a0\00a0\00a0• ";
+		}
+		sentence > div > english:before {
+			content: "\00a0\00a0\00a0\00a0\"";
+		}
+		sentence > div > english:after {
+			content: "\"";
 		}
 		word > basic > div > * {
 			display: block;
@@ -98,6 +120,19 @@
 			text-shadow: 0 0 3px;
 			cursor: pointer;
 		}
+
+		#train-content {
+			text-align: center;
+		}
+		#train-content .text-hidden {
+			color: transparent!important;
+		}
+		#train-content japanese {
+			font-size: 3rem;
+		}
+		#train-content word {
+			min-height: 175px;
+		}
 	</style>
 </head>
 <body>
@@ -108,8 +143,7 @@
 			</div>
 			<div class="nav-center">
 				<button id="view-button" class="button primary">View</button>
-				<button id="train-button" disabled class="button primary">Train</button>
-				<button id="test-button" disabled class="button primary">Test</button>
+				<button id="train-button" class="button primary">Train</button>
 			</div>
 			<div class="nav-right">
 				<select id="course-select">
@@ -191,8 +225,6 @@
 		<div id="view-content" class="view-content">
 		</div>
 		<div id="train-content" class="train-content">
-		</div>
-		<div id="test-content" class="test-content">
 		</div>
 	</div>
 </body>
