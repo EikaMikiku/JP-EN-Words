@@ -1,12 +1,15 @@
 function Learn() {
 	this.viewButton = document.getElementById("view-button");
 	this.trainButton = document.getElementById("train-button");
+	this.volumeSlider = document.getElementById("volume-slider");
 	this.courseSelect = document.getElementById("course-select");
 
 	this.viewContent = document.getElementById("view-content");
 	this.trainContent = document.getElementById("train-content");
 
 	this.timers = [];
+
+	this.volumeSlider.value = window.localStorage.volume || this.volumeSlider.value;
 
 	this.jsLocation = "./extracted/";
 	this.bindEvents();
@@ -20,6 +23,9 @@ Learn.prototype.bindEvents = function() {
 	this.trainButton.onclick = (e) => {
 		this.clearCourse();
 		this.loadCourse((e) => this.trainCourse(window[this.courseSelect.value]));
+	};
+	this.volumeSlider.onchange = (e) => {
+		window.localStorage.volume = this.volumeSlider.value;
 	};
 };
 
@@ -66,6 +72,7 @@ Learn.prototype.trainItem = async function(courseId, item) {
 		);
 		sound.innerText = "🔊";
 		audio.oncanplay = (e) => {
+			audio.volume = parseInt(this.volumeSlider.value) / 100;
 			audio.play();
 		};
 		basic.onclick = (e) => audio.play();
@@ -110,7 +117,10 @@ Learn.prototype.trainItem = async function(courseId, item) {
 				encodeURIComponent(encodeURIComponent(item.sentences[i].sound))
 			);
 			ss.innerText = "🔊";
-			sentence.onclick = (e) => sa.play();
+			sentence.onclick = (e) => {
+				sa.volume = parseInt(this.volumeSlider.value) / 100;
+				sa.play();
+			};
 			sentence.appendChild(ss);
 			//Div
 			let sentenceDiv = document.createElement("div");
@@ -189,7 +199,10 @@ Learn.prototype.viewItem = function(courseId, item) {
 	);
 	sound.innerText = "🔇";
 	audio.oncanplay = (e) => sound.innerText = "🔊";
-	basic.onclick = (e) => audio.play();
+	basic.onclick = (e) => {
+		audio.volume = parseInt(this.volumeSlider.value) / 100;
+		audio.play();
+	};
 	basic.appendChild(sound);
 
 	//Div
@@ -233,7 +246,10 @@ Learn.prototype.viewItem = function(courseId, item) {
 		sa.oncanplay = (e) => {
 			ss.innerText = "🔊";
 		};
-		sentence.onclick = (e) => sa.play();
+		sentence.onclick = (e) => {
+			sa.volume = parseInt(this.volumeSlider.value) / 100;
+			sa.play();
+		};
 		sentence.appendChild(ss);
 		//Div
 		let sentenceDiv = document.createElement("div");

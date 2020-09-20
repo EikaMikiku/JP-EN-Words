@@ -30,6 +30,11 @@
 			white-space: nowrap;
 			color: var(--font-color)!important;
 		}
+		#volume-slider {
+			padding-left: 0;
+			padding-right: 0;
+			margin-right: 10px;
+		}
 		#course-select {
 			width: 230px;
 		}
@@ -146,6 +151,7 @@
 				<button id="train-button" class="button primary">Train</button>
 			</div>
 			<div class="nav-right">
+				<input id="volume-slider" type="range" min="0" max="100" step="1" value="70">
 				<select id="course-select">
 					<optgroup label="Japanese Core 1000">
 						<option selected value="Japanese_Core_1000_Step_1">Japanese Core 1000 Step 1</option>
