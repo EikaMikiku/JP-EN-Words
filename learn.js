@@ -10,6 +10,7 @@ function Learn() {
 	this.timers = [];
 
 	this.volumeSlider.value = window.localStorage.volume || this.volumeSlider.value;
+	this.courseSelect.value = window.localStorage.lastCourse || this.courseSelect.value;
 
 	this.jsLocation = "./extracted/";
 	this.bindEvents();
@@ -26,6 +27,9 @@ Learn.prototype.bindEvents = function() {
 	};
 	this.volumeSlider.onchange = (e) => {
 		window.localStorage.volume = this.volumeSlider.value;
+	};
+	this.courseSelect.onchange = (e) => {
+		window.localStorage.lastCourse = this.courseSelect.value;
 	};
 };
 
